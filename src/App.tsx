@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import EventList from './components/EventList/EventList';
 
-function App() {  
+function App(){  
   return (
     <div className="App">
       <Box sx={{ flexGrow: 1 }}>
