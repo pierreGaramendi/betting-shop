@@ -1,20 +1,18 @@
 import styles from './Event.module.css';
-import Button from '@mui/material/Button';
+import BetSlip from '../BetSlip/BetSlip';
 
-function Event() {
+function Event(props: any) {
     return (
         <div className={styles.Event}>
             <div className={styles.card}>
                 <div className={styles.cardheader}>
-                    <div>Arsenal vs Chelsea</div>
+                    <div>{props.name}</div>
                 </div>
-                <div className={styles.cardbody}>
-                    <div>To WIN</div>
-                </div>
-                <div className={styles.cardfooter}>
-                    <Button variant="contained">Arsenal</Button>
-                    <Button variant="contained">Chelsea</Button>                    
-                </div>
+                {props.markets.map((item: any) => {
+                    return (
+                        <BetSlip markets={item}/>
+                    );
+                })}
             </div>
         </div>
     );

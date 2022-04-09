@@ -1,0 +1,26 @@
+.cardbody {
+    background: var(--card-body-color);
+    padding: 2% 5%;    
+    border-bottom: 1px solid var(--card-border-color);
+    border-radius: 10px 10px 00px 00px;
+}
+
+.cardTitle{
+    font-size: 14px;
+}
+
+.cardfooter {
+    background: var(--card-footer-color);
+    padding: 5%;
+    border-radius: 00px 00px 10px 10px;
+    display: flex;
+    justify-content: space-between
+}
+
+.BetSlip{
+    display: flex;
+    flex-direction: column;    
+    border: 1px solid var(--card-border-color);
+    margin: 2%;
+    border-radius: 10px;
+}
