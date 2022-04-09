@@ -1,7 +1,13 @@
+import Event from '../Event/Event';
+import './EventList.css';
+
 function EventList() {
     return (
-      <div className="App">
-  
+      <div className="EventList">          
+          <Event />
+          <Event />
+          <Event />
+          <Event />
       </div>
     );
   }
