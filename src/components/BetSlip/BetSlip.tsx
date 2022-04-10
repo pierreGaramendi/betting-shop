@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './BetSlip.module.css';
 import Button from '@mui/material/Button';
 import { Interfaces } from '../../interfaces/Interfaces';
@@ -6,14 +6,36 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/TaskSlice";
 
 function BetSlip(props: Interfaces.Market) {
+    console.log(props);
+    const [selections, setSelections] = useState(props.selections);
+    const [someSelected, setsomeSelected] = useState(false);
+
+    useEffect(() => {
+        const newSelections = props.selections.map((item: any) => {
+            return { ...item, selected: false }
+        });
+        setSelections(newSelections);
+    }, [])
+
+    const updateListSelection = (index: number) => {
+        const item = selections[index];
+        const newItem = { ...item, selected: true };
+        selections[index] = newItem;
+        setSelections(selections);
+    }
 
     const dispatch = useDispatch();
-    const onSubmit = (event: Interfaces.Selection) => {        
+    const onSubmit = (event: any, index: number) => {
+        if (someSelected) {
+            return;
+        }
+        updateListSelection(index);
         dispatch(
             addTask({
                 task: { ...event }
             })
         );
+        setsomeSelected(true);
     };
 
     return (
@@ -22,13 +44,13 @@ function BetSlip(props: Interfaces.Market) {
                 <div className={styles.cardTitle}>{props.name}</div>
             </div>
             <div className={styles.cardfooter}>
-                {props.selections.map((item: Interfaces.Selection) => {
+                {selections.map((item: any, index: number) => {
                     return (
                         <Button
                             key={item.id}
-                            variant="contained"
-                            color="success"
-                            onClick={() => onSubmit(item)}
+                            variant={item.selected ? "contained" : "outlined"}
+                            color={item.selected ? "success" : "primary"}
+                            onClick={() => onSubmit(item, index)}
                         >
                             {item.name}<br></br>
                             {item.price}
