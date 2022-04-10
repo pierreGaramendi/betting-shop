@@ -3,14 +3,16 @@ import Event from '../Event/Event';
 import styles from './EventList.module.css';
 import { getEvents } from '../../services/Service';
 import { Interfaces } from '../../interfaces/Interfaces'
+import { dropEmpty } from './EventList.utils';
 
 function EventList() {
     const [list, setList] = useState<Interfaces.Event[]>([]);
 
     useEffect(() => {
-        getEvents().then((resp) => {            
+        getEvents().then((resp) => {
             const { data } = resp;
-            setList(data);
+            const dataCleaned = dropEmpty(data);
+            setList(dataCleaned);
         })
     }, [])
 
@@ -18,7 +20,7 @@ function EventList() {
         <div className={styles.EventList}>
             {list.map((item: Interfaces.Event) => {
                 return (
-                    <Event key={item.id} name={item.name} markets={item.markets} id={item.id}/>
+                    <Event key={item.id} name={item.name} markets={item.markets} id={item.id} />
                 );
             })}
         </div>

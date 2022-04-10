@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/TaskSlice";
 
 function BetSlip(props: Interfaces.Market) {
-    console.log(props);
+    
     const [selections, setSelections] = useState(props.selections);
     const [someSelected, setsomeSelected] = useState(false);
 
