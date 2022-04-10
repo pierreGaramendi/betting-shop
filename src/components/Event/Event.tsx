@@ -11,7 +11,7 @@ function Event(props: Interfaces.Event) {
                 </div>
                 {props.markets.map((item: Interfaces.Market) => {                    
                     return (
-                        <BetSlip id={item.id} name={item.name} selections={item.selections}/>
+                        <BetSlip key={item.id} id={item.id} name={item.name} selections={item.selections}/>
                     );
                 })}
             </div>

@@ -18,7 +18,7 @@ function EventList() {
         <div className="EventList">
             {list.map((item: Interfaces.Event) => {
                 return (
-                    <Event name={item.name} markets={item.markets} id={item.id}/>
+                    <Event key={item.id} name={item.name} markets={item.markets} id={item.id}/>
                 );
             })}
         </div>
