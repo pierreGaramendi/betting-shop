@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,11 +10,15 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useSelector } from "react-redux";
 
 function App() {
+
+  const selections = useSelector((state: any) => {
+    return state.tasks;
+  });
 
   const [state, setState] = useState({
     top: false,
@@ -31,21 +35,20 @@ function App() {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor: any) => (
+  const list = () => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {selections.map((item: any, index: any) => (
           <div key={index}>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
+            <ListItem>
+              <ListItemText primary={item.name} />
+              <ListItemText primary={item.price} />
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
             </ListItem>
             <Divider />
           </div>
@@ -79,7 +82,7 @@ function App() {
         open={state['left']}
         onClose={toggleDrawer('left', false)}
       >
-        {list('left')}
+        {list()}
       </Drawer>
     </div>
   );
