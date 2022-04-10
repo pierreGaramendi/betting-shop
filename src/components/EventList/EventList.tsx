@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Event from '../Event/Event';
-import './EventList.css';
+import styles from './EventList.module.css';
 import { getEvents } from '../../services/Service';
 import { Interfaces } from '../../interfaces/Interfaces'
 
@@ -15,7 +15,7 @@ function EventList() {
     }, [])
 
     return (
-        <div className="EventList">
+        <div className={styles.EventList}>
             {list.map((item: Interfaces.Event) => {
                 return (
                     <Event key={item.id} name={item.name} markets={item.markets} id={item.id}/>

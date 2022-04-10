@@ -6,17 +6,15 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/TaskSlice";
 
 function BetSlip(props: Interfaces.Market) {
-    
+
     const dispatch = useDispatch();
-    const onSubmit = (event: any) => {
-        console.log(event);
+    const onSubmit = (event: Interfaces.Selection) => {        
         dispatch(
             addTask({
-                task: {...event}
+                task: { ...event }
             })
         );
     };
-
 
     return (
         <div className={styles.BetSlip}>
@@ -26,7 +24,10 @@ function BetSlip(props: Interfaces.Market) {
             <div className={styles.cardfooter}>
                 {props.selections.map((item: Interfaces.Selection) => {
                     return (
-                        <Button key={item.id} variant="contained" color="success"
+                        <Button
+                            key={item.id}
+                            variant="contained"
+                            color="success"
                             onClick={() => onSubmit(item)}
                         >
                             {item.name}<br></br>

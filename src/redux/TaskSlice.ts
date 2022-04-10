@@ -6,12 +6,12 @@ export const tasksSlice = createSlice({
     reducers: {
         addTask: (state: any, action: any) => {
             const newTask = {
-               ...action.payload.task
+                ...action.payload.task
             }
             state.push(newTask);
         },
         deleteTask: (state: any, action: any) => {
-            return state.filter((item: any) => item.id !== action.payload.id);
+            state.splice(action.payload, 1);
         }
     }
 });
