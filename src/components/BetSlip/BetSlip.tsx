@@ -1,41 +1,25 @@
-import React, { useState, useEffect } from 'react';
 import styles from './BetSlip.module.css';
 import Button from '@mui/material/Button';
 import { Interfaces } from '../../interfaces/Interfaces';
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/TaskSlice";
+import { updateBet } from '../../redux/EventListSlice';
 
-function BetSlip(props: Interfaces.Market) {
+function BetSlip(props: any) {
     
-    const [selections, setSelections] = useState(props.selections);
-    const [someSelected, setsomeSelected] = useState(false);
-
-    useEffect(() => {
-        const newSelections = props.selections.map((item: any) => {
-            return { ...item, selected: false }
-        });
-        setSelections(newSelections);
-    }, [])
-
-    const updateListSelection = (index: number) => {
-        const item = selections[index];
-        const newItem = { ...item, selected: true };
-        selections[index] = newItem;
-        setSelections(selections);
-    }
-
     const dispatch = useDispatch();
-    const onSubmit = (event: any, index: number) => {
-        if (someSelected) {
+    const onSubmit = (event: any, index: number) => {        
+        if (props.someIsSelected) {
             return;
-        }
-        updateListSelection(index);
+        }        
         dispatch(
             addTask({
-                task: { ...event }
+                task: { ...event, idMarket: props.id }
             })
         );
-        setsomeSelected(true);
+        dispatch(
+            updateBet({ id: event.id, value: true,idMarket: props.id  })
+        );        
     };
 
     return (
@@ -44,7 +28,7 @@ function BetSlip(props: Interfaces.Market) {
                 <div className={styles.cardTitle}>{props.name}</div>
             </div>
             <div className={styles.cardfooter}>
-                {selections.map((item: any, index: number) => {
+                {props.selections.map((item: any, index: number) => {
                     return (
                         <Button
                             key={item.id}
