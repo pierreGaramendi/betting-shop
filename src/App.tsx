@@ -23,11 +23,9 @@ function App() {
   });
 
   const [state, setState] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
+    left: false
   });
+
   const dispatch = useDispatch();
   const removeTask = (index: any) => {
     dispatch(
@@ -39,7 +37,6 @@ const toggleDrawer = (anchor: any, open: any) => (event: any) => {
   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
     return;
   }
-
   setState({ ...state, [anchor]: open });
 };
 
