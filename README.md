@@ -28,17 +28,17 @@ Your app is ready to be deployed!
 
 ## Technology Decisions 
 
-###Yarn over Npm
+### Yarn over Npm
 They both are great package manager. Yarn can fetch and install packages in parallel and also its adoption by developers is growing exponentially. But in the end they are also the same so it is also a matter of preference and teste.
 
-###Why Axios 
+### Why Axios 
 Axios provides an easier to use syntax in a compact package. It has good error handling or HTTP intercepts and would be helpful if needed in the future.
 
-###Why Moudles Css
+### Why Moudles Css
 CSS Modules can solve errors like conflicts from identical class names and all the project. They allow us to use the same class name in multiple files without selector and rule errors by scoping class names locally by default.
 
-###Why React Redux / Redux Toolkit
+### Why React Redux / Redux Toolkit
 Redux is a well known library for state magament, framework agnostic, a lot of documentation. Redux Toolkit is the go-to way to use Redux. It simplifies the store setup, reduces the required boilerplate, and follows the best practices by default.
 
-###Directory Structure
+### Directory Structure
 Following the design principle separating of concerns, the different parts of the project were separated into folders. You have a folder for components for the different parts of the application and avoid complexity in the code. Services folder for http requests. Interfaces for interfaces and strongly typing the event list. Redux folder for the files that create the store and the slice as a reducer.
